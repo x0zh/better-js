@@ -1,4 +1,12 @@
-import {DATE_FORMAT, LANG, ZH_WEEK, EN_WEEK, ZH_MERIDIEM, EN_MERIDIEM} from './const';
+import {
+    DATE_FORMAT, 
+    LANG, 
+    ZH_WEEK, 
+    EN_WEEK, 
+    ZH_MERIDIEM, 
+    EN_MERIDIEM
+} from './const';
+
 /**
  * 获取指定月份的天数
  * <p> 不传参数则返回当前月份的天数，非法日期返回 0

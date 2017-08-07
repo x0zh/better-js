@@ -1,7 +1,2 @@
-import * as $date from './date';
-import {VERSION} from './const';
-
-export default {
-    version: VERSION,
-    date: $date
-}
+export * from './date';
+export {VERSION as version} from './const';
