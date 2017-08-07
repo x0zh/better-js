@@ -1,21 +1,14 @@
+import * as $util from './util.js';
+
 /**
  * -------------------------------
- * data.js
  * <p> 提供了操作 `Date` 的相关功能
+ * @since 0.0.1
  * @author devin
  * -------------------------------
  */
-
-!((window) => {
+!(function (window){
     let self = window;
-    const DEFAULT_OPTIONS = {
-        date_format: 'yyyy-MM-dd HH:mm:ss',
-        lang: 'zh_CN',    // zh_CN | en_US
-        zh_week: ['日', '一', '二', '三', '四', '五', '六'],
-        en_week: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        zh_meridiem: ['上午', '下午'],
-        en_meridiem: ['AM', 'PM']
-    };
     let api = {
 
         /**
@@ -25,6 +18,7 @@
          * @return 天数
          */
         getDaysInMonth: (date) => {
+            $util.init();
             if (!date) {
                 let d = new Date();
                 return api.getDaysInMonth(d);
