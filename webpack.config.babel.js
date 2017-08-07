@@ -7,14 +7,14 @@ let plugins = [], outputFileName;
 
 if (env === 'build') {
     plugins.push(new UglifyJsPlugin({ minimize: true }));
-    outputFileName = '[name].min.js';
+    outputFileName = 'better.min.js';
 } else {
-    outputFileName = '[name].js';
+    outputFileName = 'better.js';
 }
 
 export default {
     entry: {
-        better: './src/better.js'
+        _b: './src/better.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -28,7 +28,8 @@ export default {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: /node_modules/
             }
         ]
     },
