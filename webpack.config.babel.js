@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import * as path from 'path';
-let UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 const ROOT_DIR = path.resolve(__dirname);
 const SRC_DIR = path.resolve(ROOT_DIR, "src");
