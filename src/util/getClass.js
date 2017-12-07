@@ -12,8 +12,8 @@
  * getClass(new Date())       // => Date
  * getClass(function() {})    // => Function
  * </pre>
- * @param {*} object 待测试的对象
- * @return {String} 类型对应的字符串
+ * @param {*} object          待测试的对象
+ * @return {String}           类型对应类型的字符串
  */
 export default function getClass(object) {
     if (object === undefined) return "Undefined";

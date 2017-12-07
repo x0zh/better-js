@@ -1,4 +1,5 @@
-import getClass from '../src/util/getClass';
+import {getClass} from '../src/index';
+
 describe('util test', () => {
     it('getClass()', () => {
         expect(getClass(null)).toEqual('Null');
