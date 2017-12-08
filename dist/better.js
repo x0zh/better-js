@@ -83,6 +83,119 @@ return /******/ (function(modules) { // webpackBootstrap
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = isValidDate;
+/**
+ * 校验是否是合法的时间
+ * <pre>
+ *   isValidDate('2017/12/07 24:00:00')   // => false
+ *   isValidDate('2017/12/07 10:47:35')   // => true
+ * 
+ *   isValidDate(new Date('2017-13-01'))  // => false
+ *   isValidDate(new Date('2017-12-07'))  // => true
+ * </pre>
+ * @param {*} _date    待校验的对象
+ * @returns            是合法时间返回 true，否则返回 false
+ */
+function isValidDate(_date) {
+  var date = _date instanceof Date ? _date : new Date(_date);
+  return !isNaN(date);
+}
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+// 版本信息
+var VERSION = '1.0.1';
+
+// 默认语言
+var LANG = 'zh_CN';
+
+// 默认的时期格式
+var DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';
+
+// 默认中文的星期格式
+var ZH_WEEK = ['日', '一', '二', '三', '四', '五', '六'];
+
+// 默认英文日期格式
+var EN_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+// 默认中文上午/下午
+var ZH_MERIDIEM = ['上午', '下午'];
+
+// 默认英文上午/下午
+var EN_MERIDIEM = ['AM', 'PM'];
+
+exports.VERSION = VERSION;
+exports.LANG = LANG;
+exports.DATE_FORMAT = DATE_FORMAT;
+exports.ZH_WEEK = ZH_WEEK;
+exports.EN_WEEK = EN_WEEK;
+exports.ZH_MERIDIEM = ZH_MERIDIEM;
+exports.EN_MERIDIEM = EN_MERIDIEM;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.extend = exports.getClass = exports.version = undefined;
+
+var _const = __webpack_require__(1);
+
+var _getClass = __webpack_require__(3);
+
+var _getClass2 = _interopRequireDefault(_getClass);
+
+var _extend = __webpack_require__(4);
+
+var _extend2 = _interopRequireDefault(_extend);
+
+var _formatDate = __webpack_require__(5);
+
+var _formatDate2 = _interopRequireDefault(_formatDate);
+
+var _dayCountOfMonth = __webpack_require__(6);
+
+var _dayCountOfMonth2 = _interopRequireDefault(_dayCountOfMonth);
+
+var _isValidDate = __webpack_require__(0);
+
+var _isValidDate2 = _interopRequireDefault(_isValidDate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*********************** util ************************/
+exports.version = _const.VERSION;
+exports.getClass = _getClass2.default;
+exports.extend = _extend2.default;
+exports.formatDate = _formatDate2.default;
+exports.dayCountOfMonth = _dayCountOfMonth2.default;
+exports.isValidDate = _isValidDate2.default;
+
+/*********************** date ************************/
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = getClass;
 /**
  * 获取对象的类型
@@ -108,42 +221,7 @@ function getClass(object) {
 }
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = isValidDate;
-
-var _getClass = __webpack_require__(0);
-
-var _getClass2 = _interopRequireDefault(_getClass);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * 校验是否是合法的时间
- * <pre>
- *   isValidDate('2017/12/07 24:00:00')   // => false
- *   isValidDate('2017/12/07 10:47:35')   // => true
- * 
- *   isValidDate(new Date('2017-13-01'))  // => false
- *   isValidDate(new Date('2017-12-07'))  // => true
- * </pre>
- * @param {*} _date    待校验的对象
- * @returns            是合法时间返回 true，否则返回 false
- */
-function isValidDate(_date) {
-  var date = (0, _getClass2.default)(_date) === 'Date' ? _date : new Date(_date);
-  return !isNaN(date);
-}
-
-/***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -152,36 +230,82 @@ function isValidDate(_date) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.getClass = undefined;
 
-var _getClass = __webpack_require__(0);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _getClass2 = _interopRequireDefault(_getClass);
+exports.default = extend;
+/**
+ * 实现 JQuery.extend() 方法
+ * <pre>
+ *  extend()              // => {}
+ *  extend({}, {a: 1})    // => {a: 1}
+ *  extend(true, {a: {b: 2}, array: [3, 4]}, {a: {b: 1}, array: [1, 2]})  // => {a: {b: 1}, array: [1, 2]}
+ * </pre>
+ * 
+ * @param {*} object    参数个数不限
+ */
+function extend(object) {
+    var options = void 0,
+        name = void 0,
+        src = void 0,
+        copy = void 0,
+        copyIsArray = void 0,
+        clone = void 0,
+        target = arguments[0] || {},
+        i = 1,
+        length = arguments.length,
+        deep = false;
 
-var _formatDate = __webpack_require__(3);
+    // 如果第一个参数是布尔型，则表示是否是深拷贝
+    if (typeof arguments[0] === 'boolean') {
+        deep = target;
+        target = arguments[1] || {};
+        i = 2;
+    }
 
-var _formatDate2 = _interopRequireDefault(_formatDate);
+    // 当目标不是对象的时候
+    if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) !== 'object') {
+        target = {};
+    }
 
-var _dayCountOfMonth = __webpack_require__(5);
+    // 当没有参数或只有一个参数（不算深拷贝的参数）时，直接返回
+    if (length <= i) {
+        return target;
+    }
 
-var _dayCountOfMonth2 = _interopRequireDefault(_dayCountOfMonth);
+    for (; i < length; i++) {
+        // 排除 null/undefined 参数
+        if ((options = arguments[i]) == null) {
+            continue;
+        }
+        for (name in options) {
+            src = target[name];
+            copy = options[name];
 
-var _isValidDate = __webpack_require__(1);
+            // 防止死循环
+            if (target === copy) {
+                continue;
+            }
 
-var _isValidDate2 = _interopRequireDefault(_isValidDate);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*********************** util ************************/
-exports.getClass = _getClass2.default;
-exports.formatDate = _formatDate2.default;
-exports.dayCountOfMonth = _dayCountOfMonth2.default;
-exports.isValidDate = _isValidDate2.default;
-
-/*********************** date ************************/
+            // 深拷贝
+            if (deep && copy && ((copyIsArray = copy instanceof Array) || (typeof copy === 'undefined' ? 'undefined' : _typeof(copy)) === 'object')) {
+                if (copyIsArray) {
+                    copyIsArray = false;
+                    clone = src && src instanceof Array ? src : [];
+                } else {
+                    clone = src && (typeof src === 'undefined' ? 'undefined' : _typeof(src)) === 'object' ? src : {};
+                }
+                target[name] = extend.call(this, deep, clone, copy);
+            } else if (copy !== undefined) {
+                target[name] = copy;
+            }
+        }
+    }
+    return target;
+}
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -192,13 +316,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = formatDate;
 
-var _const = __webpack_require__(4);
+var _const = __webpack_require__(1);
 
-var _getClass = __webpack_require__(0);
-
-var _getClass2 = _interopRequireDefault(_getClass);
-
-var _isValidDate = __webpack_require__(1);
+var _isValidDate = __webpack_require__(0);
 
 var _isValidDate2 = _interopRequireDefault(_isValidDate);
 
@@ -217,7 +337,7 @@ function formatDate(_date, _format, _lang) {
         return '';
     }
 
-    var date = (0, _getClass2.default)(_date) === 'Date' ? _date : new Date(_date);
+    var date = _date instanceof Date ? _date : new Date(_date);
     if (!(0, _isValidDate2.default)(date)) {
         return '';
     }
@@ -262,46 +382,7 @@ function formatDate(_date, _format, _lang) {
 }
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-// 版本信息
-var VERSION = '0.0.1';
-
-// 默认语言
-var LANG = 'zh_CN';
-
-// 默认的时期格式
-var DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';
-
-// 默认中文的星期格式
-var ZH_WEEK = ['日', '一', '二', '三', '四', '五', '六'];
-
-// 默认英文日期格式
-var EN_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-// 默认中文上午/下午
-var ZH_MERIDIEM = ['上午', '下午'];
-
-// 默认英文上午/下午
-var EN_MERIDIEM = ['AM', 'PM'];
-
-exports.VERSION = VERSION;
-exports.LANG = LANG;
-exports.DATE_FORMAT = DATE_FORMAT;
-exports.ZH_WEEK = ZH_WEEK;
-exports.EN_WEEK = EN_WEEK;
-exports.ZH_MERIDIEM = ZH_MERIDIEM;
-exports.EN_MERIDIEM = EN_MERIDIEM;
-
-/***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -312,11 +393,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = dayCountOfMonth;
 
-var _getClass = __webpack_require__(0);
-
-var _getClass2 = _interopRequireDefault(_getClass);
-
-var _isValidDate = __webpack_require__(1);
+var _isValidDate = __webpack_require__(0);
 
 var _isValidDate2 = _interopRequireDefault(_isValidDate);
 
@@ -339,7 +416,7 @@ function dayCountOfMonth(_date) {
         return dayCountOfMonth(_date2);
     }
 
-    var date = (0, _getClass2.default)(_date) === 'Date' ? _date : new Date(_date);
+    var date = _date instanceof Date ? _date : new Date(_date);
     if (!(0, _isValidDate2.default)(date)) {
         return 0;
     }
