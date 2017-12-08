@@ -1,4 +1,3 @@
-import getClass from '../util/getClass';
 import isValidDate from './isValidDate';
 
 /**
@@ -18,7 +17,7 @@ export default function dayCountOfMonth(_date) {
         return dayCountOfMonth(date);
     }
     
-    let date = getClass(_date) === 'Date' ? _date : new Date(_date);
+    let date = _date instanceof Date ? _date : new Date(_date);
     if (!isValidDate(date)) {
         return 0;
     }

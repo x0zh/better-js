@@ -7,7 +7,6 @@ import {
     EN_MERIDIEM
 } from '../util/const';
 
-import getClass from '../util/getClass';
 import isValidDate from './isValidDate';
 
 /**
@@ -23,7 +22,7 @@ export default function formatDate(_date, _format, _lang) {
         return '';
     }
 
-    let date = getClass(_date) === 'Date' ? _date : new Date(_date);
+    let date = _date instanceof Date ? _date : new Date(_date);
     if (!isValidDate(date)) {
         return '';
     }
