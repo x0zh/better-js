@@ -1,7 +1,12 @@
-总结一些常用的 `JavaScript` 代码
+总结学习 JavaScript
 
-#### 使用说明
+#### 构建步骤
 ```text
 npm install
 npm run build
+```
+
+#### 运行测试
+```text
+npm run test
 ```
