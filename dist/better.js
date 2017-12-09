@@ -249,7 +249,6 @@ function extend(object) {
         name = void 0,
         src = void 0,
         copy = void 0,
-        copyIsArray = void 0,
         clone = void 0,
         target = arguments[0] || {},
         i = 1,
@@ -279,24 +278,38 @@ function extend(object) {
             continue;
         }
         for (name in options) {
+            // 排除非自有属性
+            if (!options.hasOwnProperty(name)) {
+                continue;
+            }
             src = target[name];
             copy = options[name];
 
+            // 排除 undefined
+            if (copy === undefined) {
+                continue;
+            }
             // 防止死循环
             if (target === copy) {
                 continue;
             }
 
             // 深拷贝
-            if (deep && copy && ((copyIsArray = copy instanceof Array) || (typeof copy === 'undefined' ? 'undefined' : _typeof(copy)) === 'object')) {
-                if (copyIsArray) {
-                    copyIsArray = false;
+            if (deep) {
+                // 处理 null 或非对象
+                if (copy === null || (typeof copy === 'undefined' ? 'undefined' : _typeof(copy)) !== 'object') {
+                    target[name] = copy;
+                } else if (copy instanceof Date) {
+                    target[name] = new Date();
+                    target[name].setTime(copy.getTime());
+                } else if (copy instanceof Array) {
                     clone = src && src instanceof Array ? src : [];
+                    target[name] = extend.call(this, deep, clone, copy);
                 } else {
                     clone = src && (typeof src === 'undefined' ? 'undefined' : _typeof(src)) === 'object' ? src : {};
+                    target[name] = extend.call(this, deep, clone, copy);
                 }
-                target[name] = extend.call(this, deep, clone, copy);
-            } else if (copy !== undefined) {
+            } else {
                 target[name] = copy;
             }
         }

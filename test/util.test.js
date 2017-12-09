@@ -14,7 +14,8 @@ describe('util test', () => {
     });
 
     it('extend()', () => {
-        let obj = {name: 'abc'};
+        let obj = {name: 'abc', date: new Date('2017/12/09')};
+        let child = Object.create(obj);
         // 不传参数时
         expect(extend()).toEqual({});
         // 一个参数时
@@ -29,5 +30,9 @@ describe('util test', () => {
         expect(extend(true, 'a', null)).toEqual({});
         // 防止死循环
         expect(extend(obj, {names: obj})).toEqual(obj);
+        // 非自有属性
+        expect(extend({}, child)).toEqual({});
+        // 深拷贝时间
+        expect(extend(true, {}, obj)).toEqual({name: 'abc', date: new Date('2017/12/09')});
     });
 });
