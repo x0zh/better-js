@@ -112,7 +112,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 // 版本信息
-var VERSION = '1.0.1';
+var VERSION = '1.0.2';
 
 // 默认语言
 var LANG = 'zh_CN';
@@ -150,7 +150,7 @@ exports.EN_MERIDIEM = EN_MERIDIEM;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.extend = exports.getClass = exports.version = undefined;
+exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.clone = exports.extend = exports.getClass = exports.version = undefined;
 
 var _const = __webpack_require__(1);
 
@@ -162,11 +162,15 @@ var _extend = __webpack_require__(4);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _formatDate = __webpack_require__(5);
+var _clone = __webpack_require__(5);
+
+var _clone2 = _interopRequireDefault(_clone);
+
+var _formatDate = __webpack_require__(6);
 
 var _formatDate2 = _interopRequireDefault(_formatDate);
 
-var _dayCountOfMonth = __webpack_require__(6);
+var _dayCountOfMonth = __webpack_require__(7);
 
 var _dayCountOfMonth2 = _interopRequireDefault(_dayCountOfMonth);
 
@@ -176,15 +180,16 @@ var _isValidDate2 = _interopRequireDefault(_isValidDate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*********************** util ************************/
 exports.version = _const.VERSION;
 exports.getClass = _getClass2.default;
 exports.extend = _extend2.default;
+exports.clone = _clone2.default;
 exports.formatDate = _formatDate2.default;
 exports.dayCountOfMonth = _dayCountOfMonth2.default;
 exports.isValidDate = _isValidDate2.default;
 
 /*********************** date ************************/
+/*********************** util ************************/
 
 /***/ }),
 /* 3 */
@@ -327,6 +332,61 @@ function extend(object) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.default = clone;
+/**
+ * 深拷贝对象
+ * <pre>
+ *   clone()                    // => undefined
+ *   clone(1)                   // => 1
+ *   clone(new Date())          // => new Date()
+ *   clone(['1', '2'])          // => ['1', '2']
+ *   clone({a: 'A', b: 'B'})    // => {a: 'A', b: 'B'}
+ * </pre>
+ * @param {*} object    被拷贝的对象
+ */
+function clone(object) {
+    var copy = void 0;
+    // 处理 null/undefined 以及非 object
+    if (object == null || (typeof object === 'undefined' ? 'undefined' : _typeof(object)) !== 'object') {
+        return object;
+    }
+    // 处理时间对象
+    if (object instanceof Date) {
+        copy = new Date();
+        copy.setTime(object.getTime());
+        return copy;
+    }
+    // 处理数组
+    if (object instanceof Array) {
+        copy = [];
+        for (var i = 0, length = object.length; i < length; i++) {
+            copy[i] = clone.call(this, object[i]);
+        }
+        return copy;
+    }
+    // 处理其他对象
+    copy = {};
+    for (var name in object) {
+        if (object.hasOwnProperty(name)) {
+            copy[name] = clone.call(this, object[name]);
+        }
+    }
+    return copy;
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 exports.default = formatDate;
 
 var _const = __webpack_require__(1);
@@ -395,7 +455,7 @@ function formatDate(_date, _format, _lang) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -4,7 +4,7 @@
   "description": "常用的 js 库",
   "main": "./src",
   "scripts": {
-    "build": "cross-env WEBPACK_ENV=build node_modules\\.bin\\webpack",
+    "build": "cross-env WEBPACK_ENV=build node_modules\\.bin\\webpack --progress --colors",
     "dev": "cross-env WEBPACK_ENV=dev node_modules\\.bin\\webpack --progress --colors",
     "test": "node_modules\\.bin\\karma start"
   },

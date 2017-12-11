@@ -1,6 +1,18 @@
-import {getClass, extend} from '../src/index';
+import {clone, getClass, extend} from '../src/index';
 
 describe('util test', () => {
+    it('clone()', () => {
+        expect(clone()).toEqual(undefined);
+        expect(clone(1)).toEqual(1);
+        expect(clone(new Date())).toEqual(new Date());
+        expect(clone(['1', '2'])).toEqual(['1', '2']);
+        expect(clone({a: 'A', b: 'B'})).toEqual({a: 'A', b: 'B'});
+
+        let parent = {name: 'Babe'};
+        let child = Object.create(parent);
+        expect(clone(child)).toEqual({});
+    })
+
     it('getClass()', () => {
         expect(getClass(null)).toEqual('Null');
         expect(getClass(undefined)).toEqual('Undefined');
