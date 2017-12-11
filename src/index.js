@@ -9,6 +9,9 @@ import formatDate from './date/formatDate';
 import dayCountOfMonth from './date/dayCountOfMonth';
 import isValidDate from './date/isValidDate';
 
+/*********************** array ***********************/
+import arrayEqual from './array/arrayEqual';
+
 export {
     version,
     getClass,
@@ -17,5 +20,7 @@ export {
 
     formatDate,
     dayCountOfMonth,
-    isValidDate
+    isValidDate,
+
+    arrayEqual
 }

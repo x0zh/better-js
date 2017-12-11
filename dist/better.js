@@ -112,7 +112,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 // 版本信息
-var VERSION = '1.0.2';
+var VERSION = '1.3.1';
 
 // 默认语言
 var LANG = 'zh_CN';
@@ -150,7 +150,7 @@ exports.EN_MERIDIEM = EN_MERIDIEM;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.clone = exports.extend = exports.getClass = exports.version = undefined;
+exports.arrayEqual = exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.clone = exports.extend = exports.getClass = exports.version = undefined;
 
 var _const = __webpack_require__(1);
 
@@ -178,8 +178,14 @@ var _isValidDate = __webpack_require__(0);
 
 var _isValidDate2 = _interopRequireDefault(_isValidDate);
 
+var _arrayEqual = __webpack_require__(8);
+
+var _arrayEqual2 = _interopRequireDefault(_arrayEqual);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*********************** date ************************/
+/*********************** util ************************/
 exports.version = _const.VERSION;
 exports.getClass = _getClass2.default;
 exports.extend = _extend2.default;
@@ -187,9 +193,9 @@ exports.clone = _clone2.default;
 exports.formatDate = _formatDate2.default;
 exports.dayCountOfMonth = _dayCountOfMonth2.default;
 exports.isValidDate = _isValidDate2.default;
+exports.arrayEqual = _arrayEqual2.default;
 
-/*********************** date ************************/
-/*********************** util ************************/
+/*********************** array ***********************/
 
 /***/ }),
 /* 3 */
@@ -495,6 +501,38 @@ function dayCountOfMonth(_date) {
     }
     date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     return date.getDate();
+}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = arrayEqual;
+/**
+ * 比较两个数组是否相等
+ * <pre>
+ *   arrayEqual()                  // => true
+ *   arrayEqual([1])               // => false
+ *   arrayEqual([1], [1, 2])       // => false
+ *   arrayEqual([1, 2], [1, 2])    // => true
+ * </pre>
+ * @param {Array} lth
+ * @param {Array} rth
+ */
+function arrayEqual(lth, rth) {
+    if (lth === rth) return true;
+    if (lth == null || rth == null) return false;
+    if (lth.length !== rth.length) return false;
+    for (var i = 0; i < lth.length; i++) {
+        if (lth[i] !== rth[i]) return false;
+    }
+    return true;
 }
 
 /***/ })
