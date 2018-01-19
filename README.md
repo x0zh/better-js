@@ -1,4 +1,4 @@
-总结学习 JavaScript
+personal javascript library
 
 #### 构建步骤
 ```text

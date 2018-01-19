@@ -109,10 +109,10 @@ function isValidDate(_date) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 // 版本信息
-var VERSION = '1.3.1';
+var VERSION = '1.4.1';
 
 // 默认语言
 var LANG = 'zh_CN';
@@ -148,7 +148,7 @@ exports.EN_MERIDIEM = EN_MERIDIEM;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.arrayEqual = exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.clone = exports.extend = exports.getClass = exports.version = undefined;
 
@@ -184,8 +184,8 @@ var _arrayEqual2 = _interopRequireDefault(_arrayEqual);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*********************** date ************************/
-/*********************** util ************************/
+/** ********************* date ************************/
+/** ********************* util ************************/
 exports.version = _const.VERSION;
 exports.getClass = _getClass2.default;
 exports.extend = _extend2.default;
@@ -195,7 +195,7 @@ exports.dayCountOfMonth = _dayCountOfMonth2.default;
 exports.isValidDate = _isValidDate2.default;
 exports.arrayEqual = _arrayEqual2.default;
 
-/*********************** array ***********************/
+/** ********************* array ***********************/
 
 /***/ }),
 /* 3 */
@@ -214,7 +214,7 @@ exports.default = getClass;
  * getClass(null)             // => Null
  * getClass(undefined)        // => Undefined
  * getClass(1)                // => Number
- * getClass("1")              // => String
+ * getClass('1')              // => String
  * getClass(false)            // => Boolean
  * getClass({})               // => Object
  * getClass([])               // => Array
@@ -226,8 +226,8 @@ exports.default = getClass;
  * @return {String}           类型对应类型的字符串
  */
 function getClass(object) {
-  if (object === undefined) return "Undefined";
-  if (object === null) return "Null";
+  if (object === undefined) return 'Undefined';
+  if (object === null) return 'Null';
   return Object.prototype.toString.call(object).slice(8, -1);
 }
 
@@ -239,7 +239,7 @@ function getClass(object) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -256,76 +256,81 @@ exports.default = extend;
  * @param {*} object    参数个数不限
  */
 function extend(object) {
-    var options = void 0,
-        name = void 0,
-        src = void 0,
-        copy = void 0,
-        clone = void 0,
-        target = arguments[0] || {},
-        i = 1,
-        length = arguments.length,
-        deep = false;
+  var options = void 0,
+      name = void 0,
+      src = void 0,
+      copy = void 0,
+      clone = void 0,
+      target = void 0,
+      i = void 0,
+      length = void 0,
+      deep = void 0;
 
-    // 如果第一个参数是布尔型，则表示是否是深拷贝
-    if (typeof arguments[0] === 'boolean') {
-        deep = target;
-        target = arguments[1] || {};
-        i = 2;
-    }
+  target = arguments[0] || {};
+  length = arguments.length;
+  deep = false;
+  i = 1;
 
-    // 当目标不是对象的时候
-    if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) !== 'object') {
-        target = {};
-    }
+  // 如果第一个参数是布尔型，则表示是否是深拷贝
+  if (typeof arguments[0] === 'boolean') {
+    deep = target;
+    target = arguments[1] || {};
+    i = 2;
+  }
 
-    // 当没有参数或只有一个参数（不算深拷贝的参数）时，直接返回
-    if (length <= i) {
-        return target;
-    }
+  // 当目标不是对象的时候
+  if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) !== 'object') {
+    target = {};
+  }
 
-    for (; i < length; i++) {
-        // 排除 null/undefined 参数
-        if ((options = arguments[i]) == null) {
-            continue;
-        }
-        for (name in options) {
-            // 排除非自有属性
-            if (!options.hasOwnProperty(name)) {
-                continue;
-            }
-            src = target[name];
-            copy = options[name];
-
-            // 排除 undefined
-            if (copy === undefined) {
-                continue;
-            }
-            // 防止死循环
-            if (target === copy) {
-                continue;
-            }
-
-            // 深拷贝
-            if (deep) {
-                // 处理 null 或非对象
-                if (copy === null || (typeof copy === 'undefined' ? 'undefined' : _typeof(copy)) !== 'object') {
-                    target[name] = copy;
-                } else if (copy instanceof Date) {
-                    target[name] = new Date();
-                    target[name].setTime(copy.getTime());
-                } else if (copy instanceof Array) {
-                    clone = src && src instanceof Array ? src : [];
-                    target[name] = extend.call(this, deep, clone, copy);
-                } else {
-                    clone = src && (typeof src === 'undefined' ? 'undefined' : _typeof(src)) === 'object' ? src : {};
-                    target[name] = extend.call(this, deep, clone, copy);
-                }
-            } else {
-                target[name] = copy;
-            }
-        }
-    }
+  // 当没有参数或只有一个参数（不算深拷贝的参数）时，直接返回
+  if (length <= i) {
     return target;
+  }
+
+  for (; i < length; i++) {
+    // 排除 null/undefined 参数
+    if ((options = arguments[i]) == null) {
+      continue;
+    }
+    for (name in options) {
+      // 排除非自有属性
+      if (!options.hasOwnProperty(name)) {
+        continue;
+      }
+      src = target[name];
+      copy = options[name];
+
+      // 排除 undefined
+      if (copy === undefined) {
+        continue;
+      }
+      // 防止死循环
+      if (target === copy) {
+        continue;
+      }
+
+      // 深拷贝
+      if (deep) {
+        // 处理 null 或非对象
+        if (copy === null || (typeof copy === 'undefined' ? 'undefined' : _typeof(copy)) !== 'object') {
+          target[name] = copy;
+        } else if (copy instanceof Date) {
+          target[name] = new Date();
+          target[name].setTime(copy.getTime());
+        } else if (copy instanceof Array) {
+          clone = src && src instanceof Array ? src : [];
+          target[name] = extend.call(this, deep, clone, copy);
+        } else {
+          clone = src && (typeof src === 'undefined' ? 'undefined' : _typeof(src)) === 'object' ? src : {};
+          target[name] = extend.call(this, deep, clone, copy);
+        }
+      } else {
+        target[name] = copy;
+      }
+    }
+  }
+  return target;
 }
 
 /***/ }),
@@ -336,7 +341,7 @@ function extend(object) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -354,33 +359,33 @@ exports.default = clone;
  * @param {*} object    被拷贝的对象
  */
 function clone(object) {
-    var copy = void 0;
-    // 处理 null/undefined 以及非 object
-    if (object == null || (typeof object === 'undefined' ? 'undefined' : _typeof(object)) !== 'object') {
-        return object;
-    }
-    // 处理时间对象
-    if (object instanceof Date) {
-        copy = new Date();
-        copy.setTime(object.getTime());
-        return copy;
-    }
-    // 处理数组
-    if (object instanceof Array) {
-        copy = [];
-        for (var i = 0, length = object.length; i < length; i++) {
-            copy[i] = clone.call(this, object[i]);
-        }
-        return copy;
-    }
-    // 处理其他对象
-    copy = {};
-    for (var name in object) {
-        if (object.hasOwnProperty(name)) {
-            copy[name] = clone.call(this, object[name]);
-        }
+  var copy = void 0;
+  // 处理 null/undefined 以及非 object
+  if (object == null || (typeof object === 'undefined' ? 'undefined' : _typeof(object)) !== 'object') {
+    return object;
+  }
+  // 处理时间对象
+  if (object instanceof Date) {
+    copy = new Date();
+    copy.setTime(object.getTime());
+    return copy;
+  }
+  // 处理数组
+  if (object instanceof Array) {
+    copy = [];
+    for (var i = 0, length = object.length; i < length; i++) {
+      copy[i] = clone.call(this, object[i]);
     }
     return copy;
+  }
+  // 处理其他对象
+  copy = {};
+  for (var name in object) {
+    if (object.hasOwnProperty(name)) {
+      copy[name] = clone.call(this, object[name]);
+    }
+  }
+  return copy;
 }
 
 /***/ }),
@@ -391,7 +396,7 @@ function clone(object) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = formatDate;
 
@@ -412,52 +417,57 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @returns                             返回格式化后的时间字符串，非法日期返回空字符串
  */
 function formatDate(_date, _format, _lang) {
-    if (!_date) {
-        return '';
-    }
+  var date = void 0,
+      fmt = void 0,
+      language = void 0,
+      week = void 0,
+      meridiem = void 0,
+      patternObj = void 0;
 
-    var date = _date instanceof Date ? _date : new Date(_date);
-    if (!(0, _isValidDate2.default)(date)) {
-        return '';
-    }
+  if (!_date) {
+    return '';
+  }
 
-    var fmt = _format || _const.DATE_FORMAT,
-        language = _lang || _const.LANG,
-        week = language === _const.LANG ? _const.ZH_WEEK : _const.EN_WEEK,
-        meridiem = language === _const.LANG ? _const.ZH_MERIDIEM : _const.EN_MERIDIEM;
+  date = _date instanceof Date ? _date : new Date(_date);
+  if (!(0, _isValidDate2.default)(date)) {
+    return '';
+  }
 
-    var patternObj = {
-        'M+': date.getMonth() + 1,
-        'd+': date.getDate(),
-        'h+': date.getHours() === 12 ? 12 : date.getHours() % 12,
-        'H+': date.getHours(),
-        'm+': date.getMinutes(),
-        's+': date.getSeconds(),
-        'S': date.getMilliseconds()
-    };
+  fmt = _format || _const.DATE_FORMAT;
+  language = _lang || _const.LANG;
+  week = language === _const.LANG ? _const.ZH_WEEK : _const.EN_WEEK;
+  meridiem = language === _const.LANG ? _const.ZH_MERIDIEM : _const.EN_MERIDIEM;
+  patternObj = {
+    'M+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours() === 12 ? 12 : date.getHours() % 12,
+    'H+': date.getHours(),
+    'm+': date.getMinutes(),
+    's+': date.getSeconds(),
+    'S': date.getMilliseconds()
 
     // 格式化年份
-    if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-    }
+  };if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+  }
 
-    // 格式化月份至毫秒
-    for (var p in patternObj) {
-        if (new RegExp('(' + p + ')').test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? patternObj[p] : ('00' + patternObj[p]).substr(('' + patternObj[p]).length));
-        }
+  // 格式化月份至毫秒
+  for (var p in patternObj) {
+    if (new RegExp('(' + p + ')').test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? patternObj[p] : ('00' + patternObj[p]).substr(('' + patternObj[p]).length));
     }
+  }
 
-    // 格式化星期
-    if (/(E)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, week[date.getDay()]);
-    }
+  // 格式化星期
+  if (/(E)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, week[date.getDay()]);
+  }
 
-    // 格式化上午/下午
-    if (/(a)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, date.getHours() < 12 ? meridiem[0] : meridiem[1]);
-    }
-    return fmt;
+  // 格式化上午/下午
+  if (/(a)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, date.getHours() < 12 ? meridiem[0] : meridiem[1]);
+  }
+  return fmt;
 }
 
 /***/ }),
@@ -468,7 +478,7 @@ function formatDate(_date, _format, _lang) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = dayCountOfMonth;
 
@@ -490,17 +500,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @return                            指定月份的天数，非法日期返回 0
  */
 function dayCountOfMonth(_date) {
-    if (!_date) {
-        var _date2 = new Date();
-        return dayCountOfMonth(_date2);
-    }
+  if (!_date) {
+    var _date2 = new Date();
+    return dayCountOfMonth(_date2);
+  }
 
-    var date = _date instanceof Date ? _date : new Date(_date);
-    if (!(0, _isValidDate2.default)(date)) {
-        return 0;
-    }
-    date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    return date.getDate();
+  var date = _date instanceof Date ? _date : new Date(_date);
+  if (!(0, _isValidDate2.default)(date)) {
+    return 0;
+  }
+  date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  return date.getDate();
 }
 
 /***/ }),
@@ -511,7 +521,7 @@ function dayCountOfMonth(_date) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = arrayEqual;
 /**
@@ -526,13 +536,13 @@ exports.default = arrayEqual;
  * @param {Array} rth
  */
 function arrayEqual(lth, rth) {
-    if (lth === rth) return true;
-    if (lth == null || rth == null) return false;
-    if (lth.length !== rth.length) return false;
-    for (var i = 0; i < lth.length; i++) {
-        if (lth[i] !== rth[i]) return false;
-    }
-    return true;
+  if (lth === rth) return true;
+  if (lth == null || rth == null) return false;
+  if (lth.length !== rth.length) return false;
+  for (var i = 0; i < lth.length; i++) {
+    if (lth[i] !== rth[i]) return false;
+  }
+  return true;
 }
 
 /***/ })

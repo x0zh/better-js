@@ -11,6 +11,6 @@
  * @returns            是合法时间返回 true，否则返回 false
  */
 export default function isValidDate(_date) {
-    var date = _date instanceof Date ? _date : new Date(_date);
-    return !isNaN(date);
+  let date = _date instanceof Date ? _date : new Date(_date)
+  return !isNaN(date)
 }

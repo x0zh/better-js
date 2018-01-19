@@ -10,11 +10,11 @@
  * @param {Array} rth
  */
 export default function arrayEqual(lth, rth) {
-    if (lth === rth) return true;
-    if (lth == null || rth == null) return false;
-    if (lth.length !== rth.length) return false;
-    for (let i = 0; i < lth.length; i++) {
-        if (lth[i] !== rth[i]) return false;
-    }
-    return true;
+  if (lth === rth) return true
+  if (lth == null || rth == null) return false
+  if (lth.length !== rth.length) return false
+  for (let i = 0; i < lth.length; i++) {
+    if (lth[i] !== rth[i]) return false
+  }
+  return true
 }

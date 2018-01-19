@@ -1,4 +1,4 @@
-import isValidDate from './isValidDate';
+import isValidDate from './isValidDate'
 
 /**
  * 获取指定月份的天数
@@ -12,15 +12,15 @@ import isValidDate from './isValidDate';
  * @return                            指定月份的天数，非法日期返回 0
  */
 export default function dayCountOfMonth(_date) {
-    if (!_date) {
-        let date = new Date();
-        return dayCountOfMonth(date);
-    }
-    
-    let date = _date instanceof Date ? _date : new Date(_date);
-    if (!isValidDate(date)) {
-        return 0;
-    }
-    date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    return date.getDate();
+  if (!_date) {
+    let date = new Date()
+    return dayCountOfMonth(date)
+  }
+
+  let date = _date instanceof Date ? _date : new Date(_date)
+  if (!isValidDate(date)) {
+    return 0
+  }
+  date = new Date(date.getFullYear(), date.getMonth() + 1, 0)
+  return date.getDate()
 }
