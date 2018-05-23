@@ -5,7 +5,7 @@
  *  extend({}, {a: 1})    // => {a: 1}
  *  extend(true, {a: {b: 2}, array: [3, 4]}, {a: {b: 1}, array: [1, 2]})  // => {a: {b: 1}, array: [1, 2]}
  * </pre>
- * 
+ *
  * @param {*} object    参数个数不限
  */
 export default function extend(object) {

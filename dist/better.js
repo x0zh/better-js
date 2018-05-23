@@ -7,7 +7,7 @@
 		exports["$better"] = factory();
 	else
 		root["$better"] = factory();
-})(this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -89,7 +89,7 @@ exports.default = isValidDate;
  * <pre>
  *   isValidDate('2017/12/07 24:00:00')   // => false
  *   isValidDate('2017/12/07 10:47:35')   // => true
- * 
+ *
  *   isValidDate(new Date('2017-13-01'))  // => false
  *   isValidDate(new Date('2017-12-07'))  // => true
  * </pre>
@@ -252,7 +252,7 @@ exports.default = extend;
  *  extend({}, {a: 1})    // => {a: 1}
  *  extend(true, {a: {b: 2}, array: [3, 4]}, {a: {b: 1}, array: [1, 2]})  // => {a: {b: 1}, array: [1, 2]}
  * </pre>
- * 
+ *
  * @param {*} object    参数个数不限
  */
 function extend(object) {

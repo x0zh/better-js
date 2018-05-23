@@ -3,7 +3,7 @@
  * <pre>
  *   isValidDate('2017/12/07 24:00:00')   // => false
  *   isValidDate('2017/12/07 10:47:35')   // => true
- * 
+ *
  *   isValidDate(new Date('2017-13-01'))  // => false
  *   isValidDate(new Date('2017-12-07'))  // => true
  * </pre>
