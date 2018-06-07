@@ -1,5 +1,5 @@
 // 版本信息
-const VERSION = '1.4.1'
+const VERSION = '1.5.1'
 
 // 默认语言
 const LANG = 'zh_CN'

@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -112,7 +112,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 // 版本信息
-var VERSION = '1.4.1';
+var VERSION = '1.5.1';
 
 // 默认语言
 var LANG = 'zh_CN';
@@ -150,27 +150,59 @@ exports.EN_MERIDIEM = EN_MERIDIEM;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.arrayEqual = exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.clone = exports.extend = exports.getClass = exports.version = undefined;
+exports.default = isParent;
+/**
+ * 判断 parent 是否是 child 的父节点。
+ *
+ * @param {Node} child     子节点
+ * @param {Node} parent    父节点
+ */
+function isParent(child, parent) {
+  // Element, Text, Comment 继承 Node
+  if (!(child instanceof Node)) return false;
+  if (!(parent instanceof Node)) return false;
+
+  while (child !== undefined && child !== null && child.tagName.toUpperCase() !== 'BODY') {
+    if (child === parent) return true;
+
+    // parentNode 是 W3C 标准规范中定义的一个属性，返回该节点的父节点。
+    // parentElement 当父节点不是 Element 时，返回 null。
+    child = child.parentNode;
+  }
+  return false;
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isParent = exports.hasFocus = exports.arrayEqual = exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.clone = exports.extend = exports.getClass = exports.version = undefined;
 
 var _const = __webpack_require__(1);
 
-var _getClass = __webpack_require__(3);
+var _getClass = __webpack_require__(4);
 
 var _getClass2 = _interopRequireDefault(_getClass);
 
-var _extend = __webpack_require__(4);
+var _extend = __webpack_require__(5);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _clone = __webpack_require__(5);
+var _clone = __webpack_require__(6);
 
 var _clone2 = _interopRequireDefault(_clone);
 
-var _formatDate = __webpack_require__(6);
+var _formatDate = __webpack_require__(7);
 
 var _formatDate2 = _interopRequireDefault(_formatDate);
 
-var _dayCountOfMonth = __webpack_require__(7);
+var _dayCountOfMonth = __webpack_require__(8);
 
 var _dayCountOfMonth2 = _interopRequireDefault(_dayCountOfMonth);
 
@@ -178,11 +210,22 @@ var _isValidDate = __webpack_require__(0);
 
 var _isValidDate2 = _interopRequireDefault(_isValidDate);
 
-var _arrayEqual = __webpack_require__(8);
+var _arrayEqual = __webpack_require__(9);
 
 var _arrayEqual2 = _interopRequireDefault(_arrayEqual);
 
+var _hasFocus = __webpack_require__(10);
+
+var _hasFocus2 = _interopRequireDefault(_hasFocus);
+
+var _isParent = __webpack_require__(2);
+
+var _isParent2 = _interopRequireDefault(_isParent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/** ********************* dom ********************* **/
+
 
 /** ********************* date ************************/
 /** ********************* util ************************/
@@ -194,11 +237,13 @@ exports.formatDate = _formatDate2.default;
 exports.dayCountOfMonth = _dayCountOfMonth2.default;
 exports.isValidDate = _isValidDate2.default;
 exports.arrayEqual = _arrayEqual2.default;
+exports.hasFocus = _hasFocus2.default;
+exports.isParent = _isParent2.default;
 
 /** ********************* array ***********************/
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -232,7 +277,7 @@ function getClass(object) {
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -334,7 +379,7 @@ function extend(object) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -389,7 +434,7 @@ function clone(object) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -471,7 +516,7 @@ function formatDate(_date, _format, _lang) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -514,7 +559,7 @@ function dayCountOfMonth(_date) {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -543,6 +588,37 @@ function arrayEqual(lth, rth) {
     if (lth[i] !== rth[i]) return false;
   }
   return true;
+}
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = hasFocus;
+
+var _isParent = __webpack_require__(2);
+
+var _isParent2 = _interopRequireDefault(_isParent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * 元素是否获取焦点
+ *
+ * @param {Node} element    dom 元素
+ */
+function hasFocus(element) {
+  if (!(element instanceof Node)) return false;
+
+  // $(element).is(':focus')    jQuery
+  // document.hasFocus()    判断文档是否获取焦点
+  return (0, _isParent2.default)(document.activeElement, element);
 }
 
 /***/ })

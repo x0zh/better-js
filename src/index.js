@@ -12,6 +12,10 @@ import isValidDate from './date/isValidDate'
 /** ********************* array ***********************/
 import arrayEqual from './array/arrayEqual'
 
+/** ********************* dom ********************* **/
+import hasFocus from './dom/hasFocus'
+import isParent from './dom/isParent'
+
 export {
   version,
   getClass,
@@ -22,5 +26,8 @@ export {
   dayCountOfMonth,
   isValidDate,
 
-  arrayEqual
+  arrayEqual,
+
+  hasFocus,
+  isParent
 }
