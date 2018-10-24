@@ -1,5 +1,5 @@
 /** ********************* util ************************/
-import {VERSION as version} from './util/const'
+import {version} from '../package.json'
 import getClass from './util/getClass'
 import extend from './util/extend'
 import clone from './util/clone'
@@ -15,6 +15,7 @@ import arrayEqual from './array/arrayEqual'
 /** ********************* dom ********************* **/
 import hasFocus from './dom/hasFocus'
 import isParent from './dom/isParent'
+import removeNode from './dom/removeNode'
 
 export {
   version,
@@ -29,5 +30,6 @@ export {
   arrayEqual,
 
   hasFocus,
-  isParent
+  isParent,
+  removeNode
 }

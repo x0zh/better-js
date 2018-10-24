@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -111,45 +111,6 @@ function isValidDate(_date) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// 版本信息
-var VERSION = '1.5.1';
-
-// 默认语言
-var LANG = 'zh_CN';
-
-// 默认的时期格式
-var DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';
-
-// 默认中文的星期格式
-var ZH_WEEK = ['日', '一', '二', '三', '四', '五', '六'];
-
-// 默认英文日期格式
-var EN_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-// 默认中文上午/下午
-var ZH_MERIDIEM = ['上午', '下午'];
-
-// 默认英文上午/下午
-var EN_MERIDIEM = ['AM', 'PM'];
-
-exports.VERSION = VERSION;
-exports.LANG = LANG;
-exports.DATE_FORMAT = DATE_FORMAT;
-exports.ZH_WEEK = ZH_WEEK;
-exports.EN_WEEK = EN_WEEK;
-exports.ZH_MERIDIEM = ZH_MERIDIEM;
-exports.EN_MERIDIEM = EN_MERIDIEM;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.default = isParent;
 /**
  * 判断 parent 是否是 child 的父节点。
@@ -162,7 +123,7 @@ function isParent(child, parent) {
   if (!(child instanceof Node)) return false;
   if (!(parent instanceof Node)) return false;
 
-  while (child !== undefined && child !== null && child.tagName.toUpperCase() !== 'BODY') {
+  while (child !== undefined && child !== null) {
     if (child === parent) return true;
 
     // parentNode 是 W3C 标准规范中定义的一个属性，返回该节点的父节点。
@@ -173,7 +134,7 @@ function isParent(child, parent) {
 }
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -182,9 +143,9 @@ function isParent(child, parent) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isParent = exports.hasFocus = exports.arrayEqual = exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.clone = exports.extend = exports.getClass = exports.version = undefined;
+exports.removeNode = exports.isParent = exports.hasFocus = exports.arrayEqual = exports.isValidDate = exports.dayCountOfMonth = exports.formatDate = exports.clone = exports.extend = exports.getClass = exports.version = undefined;
 
-var _const = __webpack_require__(1);
+var _package = __webpack_require__(3);
 
 var _getClass = __webpack_require__(4);
 
@@ -202,7 +163,7 @@ var _formatDate = __webpack_require__(7);
 
 var _formatDate2 = _interopRequireDefault(_formatDate);
 
-var _dayCountOfMonth = __webpack_require__(8);
+var _dayCountOfMonth = __webpack_require__(9);
 
 var _dayCountOfMonth2 = _interopRequireDefault(_dayCountOfMonth);
 
@@ -210,26 +171,26 @@ var _isValidDate = __webpack_require__(0);
 
 var _isValidDate2 = _interopRequireDefault(_isValidDate);
 
-var _arrayEqual = __webpack_require__(9);
+var _arrayEqual = __webpack_require__(10);
 
 var _arrayEqual2 = _interopRequireDefault(_arrayEqual);
 
-var _hasFocus = __webpack_require__(10);
+var _hasFocus = __webpack_require__(11);
 
 var _hasFocus2 = _interopRequireDefault(_hasFocus);
 
-var _isParent = __webpack_require__(2);
+var _isParent = __webpack_require__(1);
 
 var _isParent2 = _interopRequireDefault(_isParent);
 
+var _removeNode = __webpack_require__(12);
+
+var _removeNode2 = _interopRequireDefault(_removeNode);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/** ********************* dom ********************* **/
-
-
-/** ********************* date ************************/
-/** ********************* util ************************/
-exports.version = _const.VERSION;
+/** ********************* array ***********************/
+exports.version = _package.version;
 exports.getClass = _getClass2.default;
 exports.extend = _extend2.default;
 exports.clone = _clone2.default;
@@ -239,8 +200,19 @@ exports.isValidDate = _isValidDate2.default;
 exports.arrayEqual = _arrayEqual2.default;
 exports.hasFocus = _hasFocus2.default;
 exports.isParent = _isParent2.default;
+exports.removeNode = _removeNode2.default;
 
-/** ********************* array ***********************/
+/** ********************* dom ********************* **/
+
+
+/** ********************* date ************************/
+/** ********************* util ************************/
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = {"name":"better-js","version":"1.5.2","description":"personal javascript library","main":"./src","scripts":{"build":"cross-env WEBPACK_ENV=build webpack --progress --colors","dev":"cross-env WEBPACK_ENV=dev webpack --progress --colors","test":"karma start","lint":"cross-env NODE_ENV=dev eslint ./src --fix"},"keywords":["js","javascript"],"homepage":"https://github.com/zxbetter/better-js","repository":{"type":"git","url":"https://github.com/zxbetter/better-js"},"bugs":{"url":"https://github.com/zxbetter/better-js/issues"},"author":"devin","license":"MIT","devDependencies":{"babel-core":"^6.26.3","babel-eslint":"^8.2.3","babel-loader":"^7.1.4","babel-plugin-add-module-exports":"^0.2.1","babel-preset-es2015":"^6.24.1","cross-env":"^5.1.6","eslint":"^4.19.1","eslint-config-standard":"^11.0.0","eslint-loader":"^1.9.0","eslint-plugin-import":"^2.12.0","eslint-plugin-node":"^5.2.1","eslint-plugin-promise":"^3.7.0","eslint-plugin-standard":"^3.1.0","hoek":"^4.2.1","istanbul-instrumenter-loader":"^3.0.1","jasmine-core":"^2.99.1","karma":"^1.7.1","karma-coverage":"^1.1.2","karma-jasmine":"^1.1.2","karma-phantomjs-launcher":"^1.0.4","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^2.0.13","webpack":"^3.12.0"}}
 
 /***/ }),
 /* 4 */
@@ -445,7 +417,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = formatDate;
 
-var _const = __webpack_require__(1);
+var _const = __webpack_require__(8);
 
 var _isValidDate = __webpack_require__(0);
 
@@ -525,6 +497,46 @@ function formatDate(_date, _format, _lang) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+// 默认语言
+var LANG = 'zh_CN',
+
+
+// 默认的时期格式
+DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss',
+
+
+// 默认中文的星期格式
+ZH_WEEK = ['日', '一', '二', '三', '四', '五', '六'],
+
+
+// 默认英文日期格式
+EN_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+
+
+// 默认中文上午/下午
+ZH_MERIDIEM = ['上午', '下午'],
+
+
+// 默认英文上午/下午
+EN_MERIDIEM = ['AM', 'PM'];
+
+exports.LANG = LANG;
+exports.DATE_FORMAT = DATE_FORMAT;
+exports.ZH_WEEK = ZH_WEEK;
+exports.EN_WEEK = EN_WEEK;
+exports.ZH_MERIDIEM = ZH_MERIDIEM;
+exports.EN_MERIDIEM = EN_MERIDIEM;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = dayCountOfMonth;
 
 var _isValidDate = __webpack_require__(0);
@@ -559,7 +571,7 @@ function dayCountOfMonth(_date) {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -591,7 +603,7 @@ function arrayEqual(lth, rth) {
 }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -602,7 +614,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = hasFocus;
 
-var _isParent = __webpack_require__(2);
+var _isParent = __webpack_require__(1);
 
 var _isParent2 = _interopRequireDefault(_isParent);
 
@@ -619,6 +631,102 @@ function hasFocus(element) {
   // $(element).is(':focus')    jQuery
   // document.hasFocus()    判断文档是否获取焦点
   return (0, _isParent2.default)(document.activeElement, element);
+}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = removeNode;
+
+var _isParent = __webpack_require__(1);
+
+var _isParent2 = _interopRequireDefault(_isParent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * 删除元素
+ *
+ * 指定删除的元素和父元素可以是 Node 对象，也可以是 CSS 选择器
+ *
+ * @param {Node | String} childNode 指定删除的元素
+ * @param {Node | String} parentNode 父元素，不指定则为 document
+ * @param {boolean} isAll 是否全部删除
+ * @returns 被删除的元素
+ */
+function removeNode(childNode, parentNode, isAll) {
+  var parent = void 0,
+      child = void 0,
+      children = void 0,
+      removedChildren = [];
+
+  if (!childNode) return;
+
+  if (!parentNode) {
+    parent = document;
+  } else if (parentNode instanceof Node) {
+    parent = parentNode;
+  } else if (typeof parentNode === 'string') {
+    parent = document.querySelector(parentNode);
+  }
+  if (!parent) return;
+
+  if (childNode instanceof Node) {
+    child = childNode;
+    if ((0, _isParent2.default)(child, parent)) return child.parentNode.removeChild(child);
+    return;
+  }
+
+  // 指定的子元素是一个普通数组
+  if (childNode instanceof Array) {
+    children = childNode;
+    children.forEach(function (v, i) {
+      child = removeNode(v, parent, isAll);
+      if (child) {
+        if (child instanceof Array) {
+          removedChildren = removedChildren.concat(child);
+        } else {
+          removedChildren.push(child);
+        }
+      }
+    });
+    return removedChildren;
+  }
+
+  // 指定的子元素是节点数组
+  if (childNode instanceof NodeList) {
+    children = childNode;
+    children.forEach(function (v, i) {
+      child = removeNode(v, parent, isAll);
+      if (child) removedChildren.push(child);
+    });
+    return removedChildren;
+  }
+
+  if (typeof childNode !== 'string') return;
+
+  // 删除父元素下指定的所有子元素
+  if (!isAll) {
+    child = parent.querySelector(childNode);
+    if (!child) return;
+    return child.parentNode.removeChild(child);
+  }
+
+  // 删除父元素下指定的第一个子元素
+  children = parent.querySelectorAll(childNode);
+  if (!children || !children.length) return;
+  children.forEach(function (v, i) {
+    child = v.parentNode.removeChild(v);
+    if (child) removedChildren.push(child);
+  });
+  return removedChildren;
 }
 
 /***/ })

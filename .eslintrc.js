@@ -48,7 +48,11 @@ module.exports = {
     // 禁止函数圆括号前有个空格
     "space-before-function-paren": ["error", "never"],
     // 箭头函数的参数使用园括号
-    'arrow-parens': 0
+    'arrow-parens': 0,
+    // "always" (默认) 要求每个作用域有一个变量声明
+    // "never" 要求每个作用域有多个变量声明
+    // "consecutive" 每个作用域允许出现多个变量声明，但对连续的变量声明要求合并为单个声明
+    "one-var": ["error", { var: "consecutive", let: "consecutive", const: "consecutive" }]
   },
 
   extends: [

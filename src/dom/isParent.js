@@ -9,7 +9,7 @@ export default function isParent(child, parent) {
   if (!(child instanceof Node)) return false
   if (!(parent instanceof Node)) return false
 
-  while (child !== undefined && child !== null && child.tagName.toUpperCase() !== 'BODY') {
+  while (child !== undefined && child !== null) {
     if (child === parent) return true
 
     // parentNode 是 W3C 标准规范中定义的一个属性，返回该节点的父节点。
