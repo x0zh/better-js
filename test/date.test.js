@@ -6,7 +6,7 @@ describe('date test', () => {
     expect(isValidDate('2017/12/07 10:47:35')).toBe(true)
     expect(isValidDate(new Date('2017-12-07'))).toBe(true)
 
-    expect(isValidDate('2017/12/07 24:00:00')).toBe(false)
+    expect(isValidDate('2017/12/07 24:00:01')).toBe(false)
     expect(isValidDate(new Date('2017-13-01'))).toBe(false)
   })
 

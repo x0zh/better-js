@@ -23,6 +23,7 @@ describe('util test', () => {
     expect(getClass(/./)).toEqual('RegExp')
     expect(getClass(new Date())).toEqual('Date')
     expect(getClass(function() {})).toEqual('Function')
+    expect(getClass(arguments)).toEqual('Arguments')
   })
 
   it('extend()', () => {

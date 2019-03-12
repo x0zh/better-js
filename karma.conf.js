@@ -1,7 +1,7 @@
 module.exports = function(config) {
   config.set({
     // 指定测试平台（需提前安装）
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     // 指定测试框架、断言库，jasmine 自带断言库
     // jasmine 资源 https://www.tuicool.com/articles/VvYrQf
     frameworks: ['jasmine'],

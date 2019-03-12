@@ -2,7 +2,7 @@ import {arrayEqual} from '../src/index'
 
 describe('array test', () => {
   it('arrayEqual()', () => {
-    expect(arrayEqual()).toBe(true)
+    expect(arrayEqual()).toBe(false)
     expect(arrayEqual([1])).toBe(false)
     expect(arrayEqual([1], [1, 2])).toBe(false)
     expect(arrayEqual([1, 2], [1, 2])).toBe(true)
