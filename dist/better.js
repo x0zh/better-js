@@ -212,7 +212,7 @@ exports.removeNode = _removeNode2.default;
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"better-js","version":"1.5.2","description":"personal javascript library","main":"./src","scripts":{"build":"cross-env WEBPACK_ENV=build webpack --progress --colors","dev":"cross-env WEBPACK_ENV=dev webpack --progress --colors","test":"karma start","lint":"cross-env NODE_ENV=dev eslint ./src --fix"},"keywords":["js","javascript"],"homepage":"https://github.com/zxbetter/better-js","repository":{"type":"git","url":"https://github.com/zxbetter/better-js"},"bugs":{"url":"https://github.com/zxbetter/better-js/issues"},"author":"devin","license":"MIT","devDependencies":{"babel-core":"^6.26.3","babel-eslint":"^8.2.6","babel-loader":"^7.1.5","babel-plugin-add-module-exports":"^0.2.1","babel-preset-es2015":"^6.24.1","cross-env":"^5.2.0","eslint":"^4.19.1","eslint-config-standard":"^11.0.0","eslint-loader":"^1.9.0","eslint-plugin-import":"^2.14.0","eslint-plugin-node":"^5.2.1","eslint-plugin-promise":"^3.8.0","eslint-plugin-standard":"^3.1.0","hoek":"^4.2.1","istanbul-instrumenter-loader":"^3.0.1","jasmine-core":"^2.99.1","karma":"^1.7.1","karma-coverage":"^1.1.2","karma-jasmine":"^1.1.2","karma-phantomjs-launcher":"^1.0.4","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^2.0.13","webpack":"^3.12.0"}}
+module.exports = {"name":"better-js","version":"1.5.3","description":"personal javascript library","main":"./src","scripts":{"build":"cross-env WEBPACK_ENV=build webpack --progress --colors","dev":"cross-env WEBPACK_ENV=dev webpack --progress --colors","test":"karma start","lint":"cross-env NODE_ENV=dev eslint ./src --fix"},"keywords":["js","javascript"],"homepage":"https://github.com/zxbetter/better-js","repository":{"type":"git","url":"https://github.com/zxbetter/better-js"},"bugs":{"url":"https://github.com/zxbetter/better-js/issues"},"author":"devin","license":"MIT","devDependencies":{"babel-core":"6.26.3","babel-eslint":"8.2.6","babel-loader":"7.1.5","babel-plugin-add-module-exports":"0.2.1","babel-preset-es2015":"6.24.1","cross-env":"5.2.0","eslint":"4.19.1","eslint-config-standard":"11.0.0","eslint-loader":"1.9.0","eslint-plugin-import":"2.16.0","eslint-plugin-node":"5.2.1","eslint-plugin-promise":"3.8.0","eslint-plugin-standard":"3.1.0","hoek":"4.2.1","istanbul-instrumenter-loader":"3.0.1","jasmine-core":"2.99.1","karma":"1.7.1","karma-chrome-launcher":"2.2.0","karma-coverage":"1.1.2","karma-jasmine":"1.1.2","karma-sourcemap-loader":"0.3.7","karma-webpack":"2.0.13","webpack":"3.12.0"}}
 
 /***/ }),
 /* 4 */
@@ -584,7 +584,7 @@ exports.default = arrayEqual;
 /**
  * 比较两个数组是否相等
  * <pre>
- *   arrayEqual()                  // => true
+ *   arrayEqual()                  // => false
  *   arrayEqual([1])               // => false
  *   arrayEqual([1], [1, 2])       // => false
  *   arrayEqual([1, 2], [1, 2])    // => true
@@ -593,8 +593,8 @@ exports.default = arrayEqual;
  * @param {Array} rth
  */
 function arrayEqual(lth, rth) {
-  if (lth === rth) return true;
   if (lth == null || rth == null) return false;
+  if (lth === rth) return true;
   if (lth.length !== rth.length) return false;
   for (var i = 0; i < lth.length; i++) {
     if (lth[i] !== rth[i]) return false;
