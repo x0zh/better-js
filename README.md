@@ -1,5 +1,5 @@
-[![npm version](https://img.shields.io/npm/v/better-js.svg?style=for-the-badge)](https://www.npmjs.com/package/better-js)
-[![npm download per month](https://img.shields.io/npm/dm/better-js.svg?style=for-the-badge)](https://www.npmjs.com/package/better-js)
+[![npm version](https://img.shields.io/npm/v/@itdevin/better-js.svg?style=for-the-badge)](https://www.npmjs.com/package/@itdevin/better-js)
+[![npm download per month](https://img.shields.io/npm/dm/@itdevin/better-js.svg?style=for-the-badge)](https://www.npmjs.com/package/@itdevin/better-js)
 
 ## 简介
 
@@ -10,11 +10,11 @@
 ### 安装
 
 ```shell
-npm install better-js --save
+npm install @itdevin/better-js --save
 
 // or
 
-yarn add better-js
+yarn add @itdevin/better-js
 ```
 
 ### 测试

@@ -1,6 +1,6 @@
 {
-  "name": "better-js",
-  "version": "1.5.4",
+  "name": "@itdevin/better-js",
+  "version": "1.5.7",
   "description": "personal javascript library",
   "main": "./src",
   "scripts": {
